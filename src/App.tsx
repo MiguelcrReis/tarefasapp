@@ -6,8 +6,8 @@ import { List } from './components/List';
 import { Create } from './components/Create';
 const App = () => {
 
-  const [list, seList] = useState<Item[]>([
-    {id: 1, name: 'Fazer o trabalho de Desenvolvimento WEB', check: false},
+  const [list, setList] = useState<Item[]>([
+    {id: 1, name: 'Fazer o trabalho de Desenvolvimento WEB', check: true},
     {id: 2, name: 'Falhar miseravelmente no trabalho de WEB', check: false},
     {id: 3, name: 'Tentar subornar a professora com 1L de Gasolina para me dar nota', check: false},
     {id: 4, name: 'Fazer o IFA DE WEB', check: false},
@@ -23,7 +23,18 @@ const App = () => {
       name: taskName,
       check: false
     });
-    seList(newList);
+    setList(newList);
+  }
+
+  //Função para salvar mudanças de check
+  const handleTaskChange = (id: number, check: boolean) => {
+    let newList = [...list];
+    for(let i in newList) {
+      if(newList[i].id === id) {
+        newList[i].check = check;
+      }
+    }
+    setList(newList);
   }
 
   return (
